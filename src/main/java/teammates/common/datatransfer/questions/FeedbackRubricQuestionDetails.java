@@ -43,7 +43,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
     public FeedbackRubricQuestionDetails(String questionText) {
         super(FeedbackQuestionType.RUBRIC, questionText);
         this.hasAssignedWeights = false;
-        this.numOfRubricChoices = 0;
+       // this.numOfRubricChoices = 0;
         this.rubricChoices = new ArrayList<>();
         this.numOfRubricSubQuestions = 0;
         this.rubricSubQuestions = new ArrayList<>();
@@ -60,7 +60,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
             return false;
         }
         for (List<String> rubricDescription : rubricDescriptions) {
-            if (rubricDescription.size() != numOfRubricChoices) {
+            if (rubricDescription.size() != this.rubricChoices.size()) {
                 return false;
             }
         }
@@ -75,7 +75,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
         if (rubricWeightsForEachCell.size() != numOfRubricSubQuestions) {
             return false;
         }
-        return rubricWeightsForEachCell.stream().allMatch(x -> x.size() == numOfRubricChoices);
+        return rubricWeightsForEachCell.stream().allMatch(x -> x.size() == rubricChoices.size());
     }
 
     @Override
@@ -112,7 +112,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
             errors.add(RUBRIC_ERROR_DESC_INVALID_SIZE);
         }
 
-        if (numOfRubricChoices < RUBRIC_MIN_NUM_OF_CHOICES) {
+        if (rubricChoices.size() < RUBRIC_MIN_NUM_OF_CHOICES) {
             errors.add(RUBRIC_ERROR_NOT_ENOUGH_CHOICES
                        + RUBRIC_MIN_NUM_OF_CHOICES);
         }
@@ -162,7 +162,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
 
             if (details.getAnswer().stream().anyMatch(choice ->
                     choice != RUBRIC_ANSWER_NOT_CHOSEN
-                            && (choice < 0 || choice >= numOfRubricChoices))) {
+                            && (choice < 0 || choice >= rubricChoices.size()))) {
                 errors.add(RUBRIC_INVALID_ANSWER);
             }
 
@@ -213,12 +213,12 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
     }
 
     public int getNumOfRubricChoices() {
-        return numOfRubricChoices;
+        return rubricChoices.size();
     }
 
-    public void setNumOfRubricChoices(int numOfRubricChoices) {
+  /*  public void setNumOfRubricChoices(int numOfRubricChoices) {
         this.numOfRubricChoices = numOfRubricChoices;
-    }
+    } */
 
     public List<String> getRubricChoices() {
         return rubricChoices;
