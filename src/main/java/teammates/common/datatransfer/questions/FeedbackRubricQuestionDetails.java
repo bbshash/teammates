@@ -30,6 +30,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
 
     private boolean hasAssignedWeights;
     private List<List<Double>> rubricWeightsForEachCell;
+    private int numOfRubricChoices;
     private List<String> rubricChoices;
     private int numOfRubricSubQuestions;
     private List<String> rubricSubQuestions;
@@ -43,6 +44,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
         super(FeedbackQuestionType.RUBRIC, questionText);
         this.hasAssignedWeights = false;
         this.rubricChoices = new ArrayList<>();
+        this.numOfRubricChoices = 0;
         this.numOfRubricSubQuestions = 0;
         this.rubricSubQuestions = new ArrayList<>();
         this.rubricDescriptions = new ArrayList<>();
@@ -214,7 +216,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
         return rubricChoices.size();
     }
 
-
+ 
     public List<String> getRubricChoices() {
         return rubricChoices;
     }
