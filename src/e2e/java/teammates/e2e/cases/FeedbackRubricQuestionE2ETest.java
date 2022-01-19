@@ -77,7 +77,7 @@ public class FeedbackRubricQuestionE2ETest extends BaseFeedbackQuestionE2ETest {
         List<List<String>> descriptions = questionDetails.getRubricDescriptions();
         descriptions.get(0).add("Edit description.");
         descriptions.get(1).add("Edit description 1.");
-        questionDetails.setNumOfRubricChoices(3);
+     //   questionDetails.setNumOfRubricChoices(3);
         // edit existing descriptions
         descriptions.get(0).set(1, "Edit description 2");
         descriptions.get(1).set(0, "");
