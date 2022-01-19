@@ -26,7 +26,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
             "The weights for the choices of each sub-question of a " + QUESTION_TYPE_NAME
                     + " must be valid numbers with precision up to 2 decimal places.";
     static final String RUBRIC_EMPTY_ANSWER = "Empty answer.";
-    static final String RUBRIC_INVALID_ANSWER = "The answer for the rubric question is not valid.";
+	static final String RUBRIC_INVALID_ANSWER = "The answer for the rubric question is not valid.";
 
     private boolean hasAssignedWeights;
     private List<List<Double>> rubricWeightsForEachCell;
@@ -59,6 +59,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
         if (rubricDescriptions.size() != numOfRubricSubQuestions) {
             return false;
         }
+        
         for (List<String> rubricDescription : rubricDescriptions) {
             if (rubricDescription.size() != this.rubricChoices.size()) {
                 return false;
@@ -82,7 +83,7 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
     public boolean shouldChangesRequireResponseDeletion(FeedbackQuestionDetails newDetails) {
         FeedbackRubricQuestionDetails newRubricDetails = (FeedbackRubricQuestionDetails) newDetails;
         // TODO: need to check for exact match.
-
+        
         // Responses require deletion if choices change
         if (!this.rubricChoices.equals(newRubricDetails.rubricChoices)) {
             return true;
@@ -216,7 +217,10 @@ public class FeedbackRubricQuestionDetails extends FeedbackQuestionDetails {
         return rubricChoices.size();
     }
 
- 
+	public void setNumOfRubricChoices(int numOfRubricChoices) {
+        this.numOfRubricChoices = numOfRubricChoices;
+    }
+
     public List<String> getRubricChoices() {
         return rubricChoices;
     }
